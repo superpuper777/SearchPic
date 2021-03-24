@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "SearchPic"
+    }
+  },
+  "defaultProject": "SearchPic",
+  "cli": {
+    "analytics": false
+  }
 }
