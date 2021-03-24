@@ -1,0 +1,42 @@
+@import "src/variables";
+
+.header {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Josefin Slab', serif;
+  padding: 0 2rem;
+  width: 100%;
+  min-height: $main_header_height;
+  background: $main_header_bgColor;
+  position: fixed;
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    color: $main_header_txtColor;
+  }
+
+  .person {
+    color: $main_header_txtColor;
+    cursor: pointer;
+    font-size: 1.8em;
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  &__logo {
+    text-decoration: none;
+    font-size: 1.8em;
+    font-weight: bold;
+    font-style: normal;
+    line-height: 28px;
+    z-index: 100;
+  }
+}
+
