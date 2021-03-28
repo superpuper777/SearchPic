@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Image, Output } from '../../shared/models/flickr';
+import { Photo, Output } from '../../shared/models/flickr';
 
 import { environment } from './../../../environments/environment';
 @Injectable({
@@ -12,17 +12,17 @@ export class DataService {
 
   searchImages(keyword: string) {
     const url =
-      'https://www.flickr.com/services/rest/?method=flickr.test.echo&name=value';
+      'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
     const params = `api_key=${environment.flickr.key}&text=${keyword}&format=json&nojsoncallback=1&per_page=12`;
     return this.http.get(url + params).pipe(
       map((res: Output) => {
         const urlArr = [];
-        res.images.image.forEach((im: Image) => {
-          const imgObj = {
-            url: `https://live.staticflickr.com/${im.server}/${im.id}_${im.secret}`,
-            title: im.title,
+        res.photos.photo.forEach((ph: Photo) => {
+          const photoObj = {
+            url: `https://live.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}`,
+            title: ph.title,
           };
-          urlArr.push(imgObj);
+          urlArr.push(photoObj);
         });
         return urlArr;
       })

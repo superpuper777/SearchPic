@@ -1,27 +1,13 @@
-<p>
-  <mat-form-field class="search-input">
-    <mat-label class="search-input__label">
-      Search
-      <mat-icon class="search-input__icon" fxLayoutAlign="center center"
-        >search</mat-icon
-      >
-    </mat-label>
-    <input
-      class="form-control"
-      matInput
-      type="text"
-      (keyup)="search($event)"
-      [formControl]="searchTerm"
-    />
-  </mat-form-field>
-</p>
-
-<div>
-  <div *ngFor="let image of images">
-    <mat-card>
-      <a href="{{ image.url }}_b.jpg">
-        <img src="{{ image.url }}_m.jpg" title="{{ image.title }}" />
+<div class="search">
+  <app-search (onEmitSearchTerm)="searchTermChange($event)"></app-search>
+</div>
+<div class="search__content">
+  <div *ngFor="let photo of photos">
+    <mat-card class="search__content__card">
+      <a href="{{ photo.url }}_b.jpg">
+        <img src="{{ photo.url }}_m.jpg" title="{{ photo.title }}" />
       </a>
+      <mat-card-content>{{ photo.title }}</mat-card-content>
     </mat-card>
   </div>
 </div>

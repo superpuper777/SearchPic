@@ -1,7 +1,6 @@
-import { Image } from './image';
-
+import { Photo } from './photo';
 export interface Output {
-  images: {
-    image: Image[];
+  photos: {
+    photo: Photo[];
   };
 }

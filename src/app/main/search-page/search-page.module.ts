@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { MaterialModule } from './../../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,7 @@ import { SearchPageComponent } from './search-page.component';
     CommonModule,
     SearchPageRoutingModule,
     MaterialModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
   ],
