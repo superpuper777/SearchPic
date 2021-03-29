@@ -13,7 +13,7 @@ export class DataService {
   searchImages(keyword: string) {
     const url =
       'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
-    const params = `api_key=${environment.flickr.key}&text=${keyword}&format=json&nojsoncallback=1&per_page=12`;
+    const params = `api_key=${environment.flickr.key}&text=${keyword}&format=json&nojsoncallback=1&per_page=100&page=1`;
     return this.http.get(url + params).pipe(
       map((res: Output) => {
         const urlArr = [];

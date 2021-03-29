@@ -1,6 +1,11 @@
 <div class="search">
   <app-search (onEmitSearchTerm)="searchTermChange($event)"></app-search>
 </div>
+<mat-paginator
+  [length]="100"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+></mat-paginator>
 <div class="search__content">
   <div *ngFor="let photo of photos">
     <mat-card class="search__content__card">
