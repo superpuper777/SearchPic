@@ -4,10 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotFoundPageComponent } from './shared/components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  // { path: '', redirectTo: 'main', pathMatch: 'full' },
   {
-    path: 'main',
-    loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
+    path: '',
+    loadChildren: () =>
+      import('./main/search-page/search-page.module').then(
+        (m) => m.SearchPageModule
+      ),
   },
   {
     path: 'bookmarks',
