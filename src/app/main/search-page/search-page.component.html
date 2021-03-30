@@ -15,6 +15,14 @@
       <mat-card-content class="search__content__card-content">{{
         photo.title
       }}</mat-card-content>
+      <button
+        class="action"
+        mat-stroked-button
+        color="primary"
+        (click)="addToBookmarks($event)"
+      >
+        Bookmark it
+      </button>
     </mat-card>
   </div>
 </div>

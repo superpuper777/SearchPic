@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from './../../shared/services/data.service';
+import { BookmarkService } from './../../shared/services/bookmark.service';
 
 import { Photo } from './../../shared/models/flickr';
 @Component({
@@ -11,7 +12,10 @@ import { Photo } from './../../shared/models/flickr';
 export class SearchPageComponent implements OnInit {
   // dataSource$: Observable<Image[]>;
   photos;
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private bookmarkService: BookmarkService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -19,5 +23,10 @@ export class SearchPageComponent implements OnInit {
     this.dataService
       .searchImages(searchTerm)
       .subscribe((photos) => (this.photos = photos));
+  }
+  addToBookmarks(photo: Photo) {
+    console.log('add to bookmarks');
+    console.log(photo);
+    this.bookmarkService.bookmarkPhoto(photo);
   }
 }
