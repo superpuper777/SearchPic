@@ -13,6 +13,8 @@ export class BookmarkService {
 
   bookmarkPhoto(photo: Photo) {
     this.photos = this.onAddPhoto(photo);
+    console.log(this.photos);
+    this.updateBookmarks();
   }
   private onAddPhoto(photo: Photo): Photo[] {
     return !this.isPhotoInBookmarks(photo.id)

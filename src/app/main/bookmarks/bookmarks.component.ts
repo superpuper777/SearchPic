@@ -14,5 +14,10 @@ export class BookmarksComponent {
   constructor(private bookmarkService: BookmarkService) {}
   ngOnInit(): void {
     this.photos$ = this.bookmarkService.photosSubject;
+    console.log(this.photos$);
+  }
+
+  deletePhoto(photo) {
+    console.log('delete photo');
   }
 }

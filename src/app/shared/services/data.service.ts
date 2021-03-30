@@ -19,6 +19,7 @@ export class DataService {
         const urlArr = [];
         res.photos.photo.forEach((ph: Photo) => {
           const photoObj = {
+            id: ph.id,
             url: `https://live.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}`,
             title: ph.title,
           };

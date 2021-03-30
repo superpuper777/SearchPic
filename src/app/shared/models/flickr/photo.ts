@@ -3,4 +3,5 @@ export interface Photo {
   secret: string;
   server: string;
   title: string;
+  url?: string;
 }
