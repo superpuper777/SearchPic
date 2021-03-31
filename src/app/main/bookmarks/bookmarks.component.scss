@@ -1,6 +1,26 @@
 @import "src/variables";
 
-p {
+:host {
   margin-top: $main_header_height;
   margin-left: $main_aside_width;
+  text-align: start;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.bookmarks__content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  &__card {
+    @include photoCard;
+  }
+
+  &-content {
+    @include card-content;
+  }
 }

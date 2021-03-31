@@ -3,8 +3,11 @@ import { Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { DataService } from './../../shared/services/data.service';
 import { BookmarkService } from './../../shared/services/bookmark.service';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { ENTER } from '@angular/cdk/keycodes';
 
 import { Photo } from './../../shared/models/flickr';
+import { Tag } from './../../shared/models/tag';
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -16,6 +19,12 @@ export class SearchPageComponent implements OnDestroy {
   per_page = 12;
   page = 1;
   searchPhoto: string = '';
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  // tags: Tag[] = [];
+  readonly separatorKeysCodes: number[] = [ENTER];
   subscription: Subscription;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
@@ -44,6 +53,27 @@ export class SearchPageComponent implements OnDestroy {
           this.photos = photos;
         })
     );
+  }
+
+  add(event: MatChipInputEvent, photo: Photo): void {
+    const input = event.input;
+    const value = event.value;
+    console.log(photo);
+    if ((value || '').trim()) {
+      photo.tags.push({ name: value.trim() });
+      console.log(photo.tags);
+    }
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(tag: Tag, photo: Photo): void {
+    const index = photo.tags.indexOf(tag);
+
+    if (index >= 0) {
+      photo.tags.splice(index, 1);
+    }
   }
 
   ngOnDestroy(): void {

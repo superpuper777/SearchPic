@@ -1,12 +1,18 @@
-<p>
+<div class="bookmarks__content">
   <mat-list-item class="photo_list" *ngFor="let photo of photos$ | async">
-    <mat-card class="search__content__card">
-      <a href="{{ photo.url }}_b.jpg">
-        <img src="{{ photo.url }}_m.jpg" title="{{ photo.title }}" />
-      </a>
-      <mat-card-content class="search__content__card-content">{{
-        photo.title
-      }}</mat-card-content>
+    <mat-card class="bookmarks__content__card">
+      <div class="bookmarks__content__card__photo">
+        <img src="{{ photo.url }}_m.jpg" />
+      </div>
+      <mat-card-content
+        class="bookmarks__content__card-content"
+        matTooltip="{{ photo.title }}"
+        matTooltipPosition="below"
+        >{{ photo.title }}</mat-card-content
+      >
+      <mat-chip *ngFor="let tag of photo.tags">
+        {{ tag.name }}
+      </mat-chip>
       <button
         class="action"
         mat-stroked-button
@@ -17,4 +23,4 @@
       </button>
     </mat-card>
   </mat-list-item>
-</p>
+</div>

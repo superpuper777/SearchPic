@@ -11,12 +11,36 @@
 <div class="search__content">
   <div *ngFor="let photo of photos">
     <mat-card class="search__content__card">
-      <a href="{{ photo.url }}_b.jpg">
-        <img src="{{ photo.url }}_m.jpg" title="{{ photo.title }}" />
-      </a>
-      <mat-card-content class="search__content__card-content">{{
-        photo.title
-      }}</mat-card-content>
+      <div class="search__content__card__photo">
+        <img src="{{ photo.url }}_m.jpg" />
+      </div>
+      <mat-card-content
+        class="search__content__card-content"
+        matTooltip="{{ photo.title }}"
+        matTooltipPosition="below"
+        >{{ photo.title }}</mat-card-content
+      >
+      <mat-form-field class="example-chip-list">
+        <mat-label>Tags</mat-label>
+        <mat-chip-list #chipList aria-label="Tag selection">
+          <mat-chip
+            *ngFor="let tag of photo.tags"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(tag, photo)"
+          >
+            {{ tag.name }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="New tag..."
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event, photo)"
+          />
+        </mat-chip-list>
+      </mat-form-field>
       <button
         class="action"
         mat-stroked-button

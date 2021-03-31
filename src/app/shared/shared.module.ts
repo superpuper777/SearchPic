@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SearchComponent } from './components/search/search.component';
@@ -28,6 +29,7 @@ import { SearchComponent } from './components/search/search.component';
     MatPaginatorModule,
     MatButtonModule,
     MatListModule,
+    MatChipsModule,
   ],
   exports: [
     SearchComponent,
@@ -39,6 +41,7 @@ import { SearchComponent } from './components/search/search.component';
     MatPaginatorModule,
     MatButtonModule,
     MatListModule,
+    MatChipsModule,
   ],
 })
 export class SharedModule {}

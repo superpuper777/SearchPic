@@ -22,6 +22,7 @@ export class DataService {
             id: ph.id,
             url: `https://live.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}`,
             title: ph.title,
+            tags: [],
           };
           urlArr.push(photoObj);
         });
