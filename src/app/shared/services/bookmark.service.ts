@@ -16,6 +16,11 @@ export class BookmarkService {
     console.log(this.photos);
     this.updateBookmarks();
   }
+
+  removePhoto(id: string): void {
+    this.photos = this.photos.filter((photo) => photo.id !== id);
+    this.updateBookmarks();
+  }
   private onAddPhoto(photo: Photo): Photo[] {
     return !this.isPhotoInBookmarks(photo.id)
       ? [...this.photos, photo]

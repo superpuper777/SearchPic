@@ -17,7 +17,8 @@ export class BookmarksComponent {
     console.log(this.photos$);
   }
 
-  deletePhoto(photo) {
+  deletePhoto(photo): void {
     console.log('delete photo');
+    this.bookmarkService.removePhoto(photo.id);
   }
 }

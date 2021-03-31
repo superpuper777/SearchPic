@@ -2,18 +2,12 @@ import {
   Component,
   OnInit,
   EventEmitter,
-  Input,
   OnDestroy,
   Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  take,
-} from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search',
