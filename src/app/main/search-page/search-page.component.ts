@@ -46,13 +46,13 @@ export class SearchPageComponent implements OnDestroy {
     this.bookmarkService.bookmarkPhoto(photo);
   }
   clickOnArrow(event): void {
-    this.subscription.add(
-      this.dataService
-        .searchImages(this.searchPhoto, this.per_page, event.pageIndex)
-        .subscribe((photos) => {
-          this.photos = photos;
-        })
-    );
+    // this.subscription.add(
+    this.dataService
+      .searchImages(this.searchPhoto, this.per_page, event.pageIndex + 1)
+      .subscribe((photos) => {
+        this.photos = photos;
+      });
+    // );
   }
 
   add(event: MatChipInputEvent, photo: Photo): void {
@@ -77,6 +77,6 @@ export class SearchPageComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }
