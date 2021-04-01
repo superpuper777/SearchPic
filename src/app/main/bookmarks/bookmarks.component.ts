@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Photo } from './../../shared/models/flickr/photo';
 
 import { BookmarkService } from './../../shared/services/bookmark.service';
+import { LocalStorageService } from './../../shared/services/local-storage.service';
+
 @Component({
   selector: 'app-bookmarks',
   templateUrl: './bookmarks.component.html',
@@ -11,14 +13,21 @@ import { BookmarkService } from './../../shared/services/bookmark.service';
 })
 export class BookmarksComponent {
   photos$: Observable<Photo[]>;
-  constructor(private bookmarkService: BookmarkService) {}
+  photos: Photo[] = [];
+  constructor(
+    private bookmarkService: BookmarkService,
+    private localStorageService: LocalStorageService
+  ) {}
   ngOnInit(): void {
     this.photos$ = this.bookmarkService.photosSubject;
     console.log(this.photos$);
+    this.photos = JSON.parse(this.localStorageService.getItem('photos'));
   }
 
   deletePhoto(photo): void {
     console.log('delete photo');
+    console.log(photo);
     this.bookmarkService.removePhoto(photo.id);
+    this.photos = JSON.parse(this.localStorageService.getItem('photos'));
   }
 }

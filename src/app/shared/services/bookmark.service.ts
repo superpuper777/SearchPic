@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
 
 import { Photo } from './../models/flickr/photo';
 
@@ -9,17 +10,21 @@ import { Photo } from './../models/flickr/photo';
 export class BookmarkService {
   private photos: Photo[] = [];
   public photosSubject = new BehaviorSubject<Photo[]>([]);
-  constructor() {}
+  constructor(private localStorageService: LocalStorageService) {}
 
   bookmarkPhoto(photo: Photo) {
+    this.photos = JSON.parse(localStorage.getItem('photos'));
     this.photos = this.onAddPhoto(photo);
     console.log(this.photos);
     this.updateBookmarks();
   }
 
   removePhoto(id: string): void {
+    this.photos = JSON.parse(localStorage.getItem('photos'));
     this.photos = this.photos.filter((photo) => photo.id !== id);
     this.updateBookmarks();
+    localStorage.setItem('photos', JSON.stringify(this.photos));
+    console.log(this.photos);
   }
   private onAddPhoto(photo: Photo): Photo[] {
     return !this.isPhotoInBookmarks(photo.id)
@@ -31,5 +36,6 @@ export class BookmarkService {
   }
   private updateBookmarks(): void {
     this.photosSubject.next(this.photos);
+    localStorage.setItem('photos', JSON.stringify(this.photos));
   }
 }
