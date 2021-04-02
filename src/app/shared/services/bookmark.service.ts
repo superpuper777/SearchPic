@@ -12,10 +12,13 @@ export class BookmarkService {
   public photosSubject = new BehaviorSubject<Photo[]>([]);
   constructor(private localStorageService: LocalStorageService) {}
 
-  bookmarkPhoto(photo: Photo) {
-    this.photos = JSON.parse(localStorage.getItem('photos'));
-    this.photos = this.onAddPhoto(photo);
-    console.log(this.photos);
+  bookmarkPhoto(photo: Photo): void {
+    if (localStorage.getItem('photos') === null) {
+      this.photos = this.onAddPhoto(photo);
+    } else {
+      this.photos = JSON.parse(localStorage.getItem('photos'));
+      this.photos = this.onAddPhoto(photo);
+    }
     this.updateBookmarks();
   }
 
@@ -37,5 +40,6 @@ export class BookmarkService {
   private updateBookmarks(): void {
     this.photosSubject.next(this.photos);
     localStorage.setItem('photos', JSON.stringify(this.photos));
+    console.log(JSON.parse(this.localStorageService.getItem('photos')));
   }
 }

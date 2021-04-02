@@ -1,13 +1,21 @@
-import { Component, ViewChild, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, ViewChild, OnDestroy, HostListener } from '@angular/core';
+import { Subscription, Subject } from 'rxjs';
+import { ENTER } from '@angular/cdk/keycodes';
+
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { DataService } from './../../shared/services/data.service';
 import { BookmarkService } from './../../shared/services/bookmark.service';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { ENTER } from '@angular/cdk/keycodes';
+import { LocalStorageService } from './../../shared/services/local-storage.service';
+
+import { DialogComponent } from './../../shared/components/dialog/dialog.component';
 
 import { Photo } from './../../shared/models/flickr';
 import { Tag } from './../../shared/models/tag';
+
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -23,14 +31,23 @@ export class SearchPageComponent implements OnDestroy {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  // tags: Tag[] = [];
+  userActivity;
+  userInactive: Subject<any> = new Subject();
   readonly separatorKeysCodes: number[] = [ENTER];
   subscription: Subscription;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private dataService: DataService,
-    private bookmarkService: BookmarkService
-  ) {}
+    private bookmarkService: BookmarkService,
+    private localStorageService: LocalStorageService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {
+    this.setTimeout();
+    this.userInactive.subscribe(() =>
+      console.log('user has been inactive for 1min')
+    );
+  }
 
   searchTermChange(searchTerm: string, per_page: number, page: number): void {
     console.log(searchTerm, per_page, page);
@@ -46,13 +63,11 @@ export class SearchPageComponent implements OnDestroy {
     this.bookmarkService.bookmarkPhoto(photo);
   }
   clickOnArrow(event): void {
-    // this.subscription.add(
     this.dataService
       .searchImages(this.searchPhoto, this.per_page, event.pageIndex + 1)
       .subscribe((photos) => {
         this.photos = photos;
       });
-    // );
   }
 
   add(event: MatChipInputEvent, photo: Photo): void {
@@ -75,8 +90,34 @@ export class SearchPageComponent implements OnDestroy {
       photo.tags.splice(index, 1);
     }
   }
+  setTimeout() {
+    this.userActivity = setTimeout(() => {
+      this.userInactive.next(undefined);
+      this.openDialog();
+      this.localStorageService.clear();
+    }, 60000);
+  }
+
+  openDialog() {
+    this.dialog.open(DialogComponent);
+  }
+
+  @HostListener('window:mousemove') refreshUserState() {
+    clearTimeout(this.userActivity);
+    this.setTimeout();
+  }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription == undefined) {
+      this.snackBar.open(
+        'Your storage is empty! You may to add some photos to bookmarks :)',
+        '',
+        {
+          duration: 5000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        }
+      );
+    } else this.subscription.unsubscribe();
   }
 }

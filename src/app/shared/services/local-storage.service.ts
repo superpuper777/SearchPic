@@ -8,6 +8,10 @@ export class LocalStorageService {
   constructor() {
     this.storage = window.localStorage;
   }
+
+  getLength(): number {
+    return this.storage.length;
+  }
   clear(): void {
     this.storage.clear();
   }

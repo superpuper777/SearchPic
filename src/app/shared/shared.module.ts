@@ -11,12 +11,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SearchComponent } from './components/search/search.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
-  declarations: [NotFoundPageComponent, SearchComponent],
+  declarations: [NotFoundPageComponent, SearchComponent, DialogComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -30,6 +33,8 @@ import { SearchComponent } from './components/search/search.component';
     MatButtonModule,
     MatListModule,
     MatChipsModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
   exports: [
     SearchComponent,
@@ -42,6 +47,8 @@ import { SearchComponent } from './components/search/search.component';
     MatButtonModule,
     MatListModule,
     MatChipsModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,28 @@
+@import "src/variables";
+
+.session_expired-title {
+  color: $main_header_bgColor;
+}
+
+.session_expired {
+  display: flex;
+  gap: 2rem;
+
+  &__icon {
+    .icon {
+      font-size: 2.6rem;
+      color: $second_violet_color;
+    }
+  }
+
+  &__info {
+    &__title {
+      color: $second_violet_color;
+      font-weight: 500;
+    }
+
+    &__description {
+      color: $main_gray;
+    }
+  }
+}
