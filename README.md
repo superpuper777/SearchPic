@@ -1,27 +1,16 @@
 # SearchPic
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+This web app to search for images using Flickr.
 
-## Development server
+## Details
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The app should provide an interface to do a simple search on Flickr. The search results area should provide a list of images with titles; also, there should be a possibility to store any image with arbitrary tags provided by the end user. Please note that search results may be huge, we will need a pagination
+The Bookmarks area should list all the saved images with ability to remove any single item. There is no limitation in frameworks except that the app should be built with the latest Angular.
+Bookmarks are saved to the browser local storage.
 
-## Code scaffolding
+## Application implementation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- The UI is implemented with using a Angular Material UI
+- This app is [deployed to Netlify](https://gracious-mayer-b2f8d1.netlify.app/)
+- The app monitor user’s activity; if there is no user activity (mouse movements) in search-page,
+  in one minute, the app end user session) and display a mask over the user interface.
