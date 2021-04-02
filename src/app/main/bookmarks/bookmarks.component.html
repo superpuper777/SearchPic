@@ -10,9 +10,15 @@
         matTooltipPosition="below"
         >{{ photo.title }}</mat-card-content
       >
-      <mat-chip *ngFor="let tag of photo.tags">
-        {{ tag.name }}
-      </mat-chip>
+      <mat-chip-list
+        class="test"
+        cdkDropList
+        cdkDropListOrientation="horizontal"
+      >
+        <mat-chip *ngFor="let tag of photo.tags">
+          {{ tag.name }}
+        </mat-chip>
+      </mat-chip-list>
       <button
         class="action"
         mat-stroked-button

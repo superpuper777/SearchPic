@@ -18,6 +18,14 @@
 
   &__card {
     @include photoCard;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    button {
+      display: block;
+      width: 40%;
+    }
   }
 
   &-content {

@@ -1,5 +1,5 @@
 $main_header_height: 3.4rem;
-$main_aside_width: 8rem;
+$main_aside_width: 7.4rem;
 $main_header_bgColor: #7B1FA2;
 $second_violet_color: #a65ac7;
 $main_gray: #b4b4b4;
@@ -9,8 +9,9 @@ $main_header_txtColor: #fff;
 
 @mixin photoCard {
   width: 250px;
-  height: 350px;
+  height: 320px;
   overflow: auto;
+
 
   &__photo {
     img {
