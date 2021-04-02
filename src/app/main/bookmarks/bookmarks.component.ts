@@ -20,13 +20,10 @@ export class BookmarksComponent {
   ) {}
   ngOnInit(): void {
     this.photos$ = this.bookmarkService.photosSubject;
-    console.log(this.photos$);
     this.photos = JSON.parse(this.localStorageService.getItem('photos'));
   }
 
   deletePhoto(photo): void {
-    console.log('delete photo');
-    console.log(photo);
     this.bookmarkService.removePhoto(photo.id);
     this.photos = JSON.parse(this.localStorageService.getItem('photos'));
   }

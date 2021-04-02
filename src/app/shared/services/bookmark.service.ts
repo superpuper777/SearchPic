@@ -27,7 +27,6 @@ export class BookmarkService {
     this.photos = this.photos.filter((photo) => photo.id !== id);
     this.updateBookmarks();
     localStorage.setItem('photos', JSON.stringify(this.photos));
-    console.log(this.photos);
   }
   private onAddPhoto(photo: Photo): Photo[] {
     return !this.isPhotoInBookmarks(photo.id)
@@ -40,6 +39,5 @@ export class BookmarkService {
   private updateBookmarks(): void {
     this.photosSubject.next(this.photos);
     localStorage.setItem('photos', JSON.stringify(this.photos));
-    console.log(JSON.parse(this.localStorageService.getItem('photos')));
   }
 }

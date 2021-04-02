@@ -44,13 +44,9 @@ export class SearchPageComponent implements OnDestroy {
     private snackBar: MatSnackBar
   ) {
     this.setTimeout();
-    this.userInactive.subscribe(() =>
-      console.log('user has been inactive for 1min')
-    );
   }
 
   searchTermChange(searchTerm: string, per_page: number, page: number): void {
-    console.log(searchTerm, per_page, page);
     this.subscription = this.dataService
       .searchImages(searchTerm, per_page, page)
       .subscribe((photos) => {
@@ -59,7 +55,6 @@ export class SearchPageComponent implements OnDestroy {
       });
   }
   addToBookmarks(photo: Photo): void {
-    console.log(photo);
     this.bookmarkService.bookmarkPhoto(photo);
   }
   clickOnArrow(event): void {
@@ -73,10 +68,8 @@ export class SearchPageComponent implements OnDestroy {
   add(event: MatChipInputEvent, photo: Photo): void {
     const input = event.input;
     const value = event.value;
-    console.log(photo);
     if ((value || '').trim()) {
       photo.tags.push({ name: value.trim() });
-      console.log(photo.tags);
     }
     if (input) {
       input.value = '';

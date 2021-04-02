@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotFoundPageComponent } from './shared/components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'main', pathMatch: 'full' },
   {
     path: '',
     loadChildren: () =>

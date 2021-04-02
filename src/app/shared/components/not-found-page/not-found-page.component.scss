@@ -1,13 +1,38 @@
 @import "src/variables";
 
-:host {
-  margin-top: $main_header_height;
-  margin-left: $main_aside_width;
-  text-align: start;
-  min-width: 150px;
-  // width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
+.page_404 {
+
+  &__container {
+    margin-top: $main_header_height;
+    margin-left: $main_aside_width;
+    padding: 40px 0;
+    font-size: 20px;
+
+    &_bg {
+      background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+      height: 400px;
+      background-position: center;
+
+      &-text {
+        font-size: 80px;
+        font-weight: 500;
+        text-align: center;
+        color: $main_header_bgColor;
+      }
+    }
+
+    &_content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: -50px;
+      display: flex;
+
+      .highlighter {
+        color: $main_header_bgColor;
+        font-weight: 500;
+      }
+    }
+  }
 }
