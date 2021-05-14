@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 
 import { Photo } from './../../shared/models/flickr/photo';
 

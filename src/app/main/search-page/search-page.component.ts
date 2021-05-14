@@ -1,5 +1,6 @@
-import { Component, ViewChild, OnDestroy, HostListener } from '@angular/core';
-import { Subscription, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Component, ViewChild, OnDestroy, HostListener, OnInit } from '@angular/core';
+import { Subscription, Subject, Observable } from 'rxjs';
 import { ENTER } from '@angular/cdk/keycodes';
 
 import { MatPaginator } from '@angular/material/paginator';
@@ -21,8 +22,11 @@ import { Tag } from './../../shared/models/tag';
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss'],
 })
-export class SearchPageComponent implements OnDestroy {
+export class SearchPageComponent implements OnInit, OnDestroy {
+  public qwerty$: Observable<any>;
   photos;
+  photos$: Observable<Photo[]>;
+  searchPhoto$: Observable<string>;
   resultsLength = 500;
   per_page = 12;
   page = 1;
@@ -45,24 +49,42 @@ export class SearchPageComponent implements OnDestroy {
   ) {
     this.setTimeout();
   }
+  ngOnInit() {
+    this.qwerty$ = this.dataService.test$
+  }
 
   searchTermChange(searchTerm: string, per_page: number, page: number): void {
-    this.subscription = this.dataService
-      .searchImages(searchTerm, per_page, page)
-      .subscribe((photos) => {
-        this.photos = photos;
-        this.searchPhoto = searchTerm;
-      });
+    // this.subscription = this.dataService
+    //   .searchImages(searchTerm, per_page, page)
+    //   .subscribe((photos) => {
+    //     this.photos = photos;
+    //     this.searchPhoto = searchTerm;
+    //   }); 
+    // this.photos$ = this.dataService.searchImages(searchTerm, per_page, page)
+    //   .pipe(
+    //     map(photos => photos)
+    // );
+    this.dataService.searchImages(searchTerm, per_page, page);
+  //   this.searchPhoto$ =  this.dataService.searchImages(searchTerm, per_page, page)
+  //   .pipe(
+  //     map(photo => searchTerm)
+  // );
   }
   addToBookmarks(photo: Photo): void {
     this.bookmarkService.bookmarkPhoto(photo);
   }
   clickOnArrow(event): void {
-    this.dataService
-      .searchImages(this.searchPhoto, this.per_page, event.pageIndex + 1)
-      .subscribe((photos) => {
-        this.photos = photos;
-      });
+    // this.dataService
+    //   .searchImages(this.searchPhoto, this.per_page, event.pageIndex + 1)
+    //   .subscribe((photos) => {
+    //     this.photos = photos;
+    //   });
+    
+    // this.photos$ = this.dataService
+    //   .searchImages(this.searchPhoto$, this.per_page, event.pageIndex + 1)
+    //   .pipe(
+    //     map(photos => photos)
+    //   );
   }
 
   add(event: MatChipInputEvent, photo: Photo): void {

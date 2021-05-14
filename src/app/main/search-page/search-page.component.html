@@ -9,7 +9,7 @@
   (page)="clickOnArrow($event)"
 ></mat-paginator>
 <div class="search__content">
-  <div *ngFor="let photo of photos">
+  <div *ngFor="let photo of qwerty$ | async">
     <mat-card class="search__content__card">
       <div class="search__content__card__photo">
         <img src="{{ photo.url }}_m.jpg" />
@@ -52,3 +52,5 @@
     </mat-card>
   </div>
 </div>
+
+<div>{{ qwerty$ | async }}</div>

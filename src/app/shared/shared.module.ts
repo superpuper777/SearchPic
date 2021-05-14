@@ -12,10 +12,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SearchComponent } from './components/search/search.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+
 
 @NgModule({
   declarations: [NotFoundPageComponent, SearchComponent, DialogComponent],
